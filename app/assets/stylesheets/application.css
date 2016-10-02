@@ -23,24 +23,3 @@ body {
   text-align: center;
   font-weight: bold;
 }
-
-.albumimage {
-  padding: 0 20px;
-}
-
-h4 {
-	font-size: 28px;
-  font-weight:normal;
-  text-transform:uppercase;
-	line-height: normal;
-	position: relative;
-	/*top: -90px;*/
-  padding: 0 25px;
-}
-
-h6 {
-  font-size: 20px;
-  /*margin-top: -180px;*/
-  text-transform: uppercase;
-  font-weight: normal;
-}

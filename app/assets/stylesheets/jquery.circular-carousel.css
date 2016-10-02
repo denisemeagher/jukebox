@@ -1,11 +1,10 @@
 .carousel .item {
+	height: 350px;
+	width: 300px;
+	padding-top: 20px;
 	text-align: center;
 	display: block;
 	position: absolute;
-	-webkit-transform: scale(0.5);
-	-moz-transform: scale(0.5);
-	-o-transform: scale(0.5);
-	transform: scale(0.5);
 }
 
 .carousel .item.active {
