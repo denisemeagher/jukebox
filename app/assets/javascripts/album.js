@@ -23,7 +23,46 @@ carousel.on('itemActive', function(e, activeItem) {
     console.info(data);
   });
     //do something with $(item)
+
+
 });
+
+
+/* Fires when an item is about to start it's activate animation */
+carousel.on('itemBeforeActive', function(e, item) {
+    console.log("itemBeforeActive=======> ", item);
+});
+
+/* Fires after an item finishes it's activate animation */
+carousel.on('itemActive', function(e, item) {
+  console.log("itemActive=======> ", item);
+  // $(item).removeClass("positionLeft");
+  // $(item).removeClass("positionRight");
+  console.log($(item).data("id"));
+  // $(item).next().addClass("positionRight");
+  // $(item).removeClass("positionRight");
+  // $(item).removeClass("positionLeft");
+
+
+});
+
+/* Fires when an active item starts it's de-activate animation */
+carousel.on('itemBeforeDeactivate', function(e, item) {
+    console.log("itemBeforeDeactivate=======> ", $(item).addClass("positionRight"));
+    // $(item).removeClass("positionRight");
+    // $(item).addClass("positionLeft");
+})
+
+/* Fires after an active item has finished it's de-activate animation */
+carousel.on('itemAfterDeactivate', function(e, item) {
+  console.log("itemAfterDeactivate=======> ", item);
+  // $(item).addClass("positionRight");
+  // $(item).removeClass("positionRight");
+  // $(item).next().next().removeClass("positionLeft");
+
+})
+
+
 
 /* Previous button */
 $('.controls .previous').click(function(e) {
@@ -43,6 +82,7 @@ $('.carousel .item').click(function(e) {
 	carousel.cycleActiveTo(index);
 	e.preventDefault();
 });
+
 
 };
 
@@ -65,15 +105,19 @@ $(function(){
 function albumHtml(value){
   if (value.id === 1) {
     var active = "active";
+  }else if  (value.id === 2){
+    active = "positionRight"
+  }else if( value.id === 5){
+    active = "positionLeft"
   }
   return '<li class="item '+active+'" data-id="'+ value.id +'">'+
     '<div class="albumimage">'+
       '<img src="' + value.cover_photo_url + '" alt="1" />'+
     '</div>'+
-    // '<div>' +
+    '<div>' +
       '<h4>' + value.name + '</h4>'+
       '<h6>' + value.artist_name + '</h6>'+
-    // '</div>' +
+    '</div>' +
   '</li>';
 }
 // Another function that will return song  html mockup
