@@ -27,5 +27,5 @@ BONUS I & II not yet implemented
 
 Albums and songs attained from provided API 
 Used https://github.com/sgb-io/jquery.circular-carousel for the carousel 
-html/css for styling and Bootstrap used for for cross browswer usability such as IE. 
+html/css for styling and Bootstrap used for for cross browser usability such as IE. 
 Ruby/Rails used for backend.
