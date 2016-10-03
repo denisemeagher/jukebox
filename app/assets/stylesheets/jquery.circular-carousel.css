@@ -1,3 +1,13 @@
+/* css provided with carousel. some changes have been made */
+
+
+.carousel {
+	position: relative;
+	width: 100%;
+	overflow:visible;
+	height: 600px;
+}
+
 .carousel .item {
 	height: 350px;
 	width: 300px;
@@ -5,6 +15,9 @@
 	text-align: center;
 	display: block;
 	position: absolute;
+	background-size: 100%;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+	background-color: #fff;
 }
 
 .carousel .item.active {
@@ -12,6 +25,8 @@
 	-moz-transform: scale(1);
 	-o-transform: scale(1);
 	transform: scale(1);
+	background-color: #0085B2;
+	color: #fff;
 }
 
 .carousel .item.transition {
