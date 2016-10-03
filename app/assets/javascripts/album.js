@@ -4,7 +4,7 @@ var options = {
     ovalWidth: 275,
     ovalHeight: 50,
     offsetX: 50,
-    offsetY: 440,
+    offsetY: 400,
     angle: 0,
     activeItem: 0,
     duration: 350,

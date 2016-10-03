@@ -45,11 +45,11 @@
 }
 
 .controls .previous {
-	left: 100px;
+	left: 50px;
 }
 
 .controls .next {
-	right: 100px;
+	right: 50px;
 }
 
 .btn:visited {
@@ -85,7 +85,7 @@
 
 .songlist.container {
 	width: 50%;
-	margin-top: -200px;
+	margin-top: -100px;
 	margin-bottom: 150px;
 }
 
