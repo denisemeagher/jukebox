@@ -1,6 +1,5 @@
 function init (){
-
-//var options came with carousel but adjustments made to reposition items (albums)
+//var options came with carousel but adjustments made to reposition items (albums)//
 var options = {
     ovalWidth: 275,
     ovalHeight: 50,
@@ -12,21 +11,7 @@ var options = {
     className: 'item'
   }
 
-  var count = 1;
-     function setColor(btn, color) {
-         var property = document.getElementById(favorite);
-         if (count == 0) {
-             property.style.backgroundColor = "red"
-             count = 1;
-         }
-         else {
-             property.style.backgroundColor = "blue"
-             count = 0;
-         }
-     }
-
 var carousel = $('.carousel').CircularCarousel( options );
-
 
 /* Fires after an item finishes it's activate animation */
 carousel.on('itemActive', function(e, activeItem) {
@@ -43,7 +28,7 @@ carousel.on('itemActive', function(e, activeItem) {
       '<span class="song-id">' + value.id + '</span>' +
       '<a data-toggle="tooltip" title="mark as favorite" class="glyphicon glyphicon-star btn-lg" aria-hidden="true">' + '</a>' +
       '<span class="songname">' + value.song_name + '</span>' +
-      //need to do an if to check to see if the song label exists otherwise leave empty. Also display the two labels separately.
+      //need to do an if/else to check to see if the song label exists otherwise leave empty. Also display the two labels separately.
       '<span class="songlabel">' + value.song_label + '</span>' +
       '<span class="songtime">' + value.song_duration + '</span>' + '</l1>');
     });
@@ -53,10 +38,9 @@ carousel.on('itemActive', function(e, activeItem) {
 
 /* Fires when an item is about to start it's activate animation */
 carousel.on('itemBeforeActive', function(e, item) {
-    // console.log("itemBeforeActive=======> ", item);
 });
 
-// after changing left and right position of albums 2 and 5, tried to make changes so the transition worked for all following albums but couldn't get it acceptable. leaving the commented out lines so I can revisit it later.
+// after changing left and right position of albums 2 and 5 to match the mockup. I console logged which items were affected during this transition so I could try to make changes so the transition worked for all following albums but couldn't get it acceptable enough to submit. Leaving the commented out lines below so I can revisit it later.//
 
 /* Fires after an item finishes it's activate animation */
 carousel.on('itemActive', function(e, item) {
@@ -102,7 +86,6 @@ $('.controls .previous').click(function(e) {
   	carousel.cycleActiveTo(index);
   	e.preventDefault();
   });
-
 };
 
 $(function(){
@@ -117,10 +100,10 @@ $(function(){
     })
   }).success(function(){
     init();
-  })
+  });
 });
 
-// Function for returning the album html/info
+// Function for returning the album html/info//
 function albumHtml(value){
   if (value.id === 1) {
     var active = "active";
@@ -140,7 +123,7 @@ function albumHtml(value){
   '</li>';
 }
 
-//trying to add tooltip toggle from bootstrap to display 'mark as favorite' when hovering over stars. the message will appear, just not functioning correctly. I can get it right if I keep it in the html file, but not in the js file.
+//trying to add tooltip toggle from bootstrap to display 'mark as favorite' when hovering over stars. the message will appear, just not functioning correctly. I can get it right if I keep it in the html file, but not in the js file. Will continue to work with it.
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
