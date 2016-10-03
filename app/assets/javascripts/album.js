@@ -1,15 +1,32 @@
 function init (){
+
+//var options came with carousel but adjustments made to reposition items (albums)
 var options = {
-    ovalWidth: 400,
+    ovalWidth: 275,
     ovalHeight: 50,
-    offsetX: 100,
-    offsetY: 325,
+    offsetX: 50,
+    offsetY: 440,
     angle: 0,
     activeItem: 0,
     duration: 350,
     className: 'item'
   }
+
+  var count = 1;
+     function setColor(btn, color) {
+         var property = document.getElementById(favorite);
+         if (count == 0) {
+             property.style.backgroundColor = "red"
+             count = 1;
+         }
+         else {
+             property.style.backgroundColor = "blue"
+             count = 0;
+         }
+     }
+
 var carousel = $('.carousel').CircularCarousel( options );
+
 
 /* Fires after an item finishes it's activate animation */
 carousel.on('itemActive', function(e, activeItem) {
@@ -20,49 +37,52 @@ carousel.on('itemActive', function(e, activeItem) {
     dataType: 'jsonp'
   })
   .done(function( data ) {
-    console.info(data);
+    $(".list-group").html("");
+    $.each(data, function(index, value){
+      $(".list-group").append('<li class="list-group-item">' +
+      '<span class="song-id">' + value.id + '</span>' +
+      '<a data-toggle="tooltip" title="mark as favorite" class="glyphicon glyphicon-star btn-lg" aria-hidden="true">' + '</a>' +
+      '<span class="songname">' + value.song_name + '</span>' +
+      //need to do an if to check to see if the song label exists otherwise leave empty. Also display the two labels separately.
+      '<span class="songlabel">' + value.song_label + '</span>' +
+      '<span class="songtime">' + value.song_duration + '</span>' + '</l1>');
+    });
   });
-    //do something with $(item)
-
-
 });
 
 
 /* Fires when an item is about to start it's activate animation */
 carousel.on('itemBeforeActive', function(e, item) {
-    console.log("itemBeforeActive=======> ", item);
+    // console.log("itemBeforeActive=======> ", item);
 });
+
+// after changing left and right position of albums 2 and 5, tried to make changes so the transition worked for all following albums but couldn't get it acceptable. leaving the commented out lines so I can revisit it later.
 
 /* Fires after an item finishes it's activate animation */
 carousel.on('itemActive', function(e, item) {
   console.log("itemActive=======> ", item);
-  // $(item).removeClass("positionLeft");
   // $(item).removeClass("positionRight");
-  console.log($(item).data("id"));
+  console.log($(item).data("album_id"));
   // $(item).next().addClass("positionRight");
   // $(item).removeClass("positionRight");
   // $(item).removeClass("positionLeft");
-
-
 });
 
 /* Fires when an active item starts it's de-activate animation */
 carousel.on('itemBeforeDeactivate', function(e, item) {
-    console.log("itemBeforeDeactivate=======> ", $(item).addClass("positionRight"));
+    // console.log("itemBeforeDeactivate=======> ", $(item).addClass("positionRight"));
     // $(item).removeClass("positionRight");
     // $(item).addClass("positionLeft");
 })
 
 /* Fires after an active item has finished it's de-activate animation */
 carousel.on('itemAfterDeactivate', function(e, item) {
-  console.log("itemAfterDeactivate=======> ", item);
+  // console.log("itemAfterDeactivate=======> ", item);
   // $(item).addClass("positionRight");
   // $(item).removeClass("positionRight");
   // $(item).next().next().removeClass("positionLeft");
 
 })
-
-
 
 /* Previous button */
 $('.controls .previous').click(function(e) {
@@ -70,19 +90,18 @@ $('.controls .previous').click(function(e) {
 	e.preventDefault();
 });
 
-/* Next button */
-$('.controls .next').click(function(e) {
-	carousel.cycleActive('next');
-	e.preventDefault();
-});
+  /* Next button */
+  $('.controls .next').click(function(e) {
+  	carousel.cycleActive('next');
+  	e.preventDefault();
+  });
 
-/* Manaully click an item anywhere in the carousel */
-$('.carousel .item').click(function(e) {
-	var index = $(this).index('li');
-	carousel.cycleActiveTo(index);
-	e.preventDefault();
-});
-
+  /* Manaully click an item anywhere in the carousel */
+  $('.carousel .item').click(function(e) {
+  	var index = $(this).index('li');
+  	carousel.cycleActiveTo(index);
+  	e.preventDefault();
+  });
 
 };
 
@@ -101,18 +120,18 @@ $(function(){
   })
 });
 
-// Function that will return the album mockup html
+// Function for returning the album html/info
 function albumHtml(value){
   if (value.id === 1) {
     var active = "active";
-  }else if  (value.id === 2){
+  }else if (value.id === 5){
     active = "positionRight"
-  }else if( value.id === 5){
-    active = "positionLeft"
+  }else if (value.id === 2){
+    active = "positionRight"
   }
-  return '<li class="item '+active+'" data-id="'+ value.id +'">'+
+  return '<li class="item '+ active +'" data-id="'+ value.id +'">'+
     '<div class="albumimage">'+
-      '<img src="' + value.cover_photo_url + '" alt="1" />'+
+      '<img src="' + value.cover_photo_url + '"alt="album photo" />'+
     '</div>'+
     '<div>' +
       '<h4>' + value.name + '</h4>'+
@@ -120,7 +139,8 @@ function albumHtml(value){
     '</div>' +
   '</li>';
 }
-// Another function that will return song  html mockup
-function songHtml(){
 
-}
+//trying to add tooltip toggle from bootstrap to display 'mark as favorite' when hovering over stars. the message will appear, just not functioning correctly. I can get it right if I keep it in the html file, but not in the js file.
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
