@@ -69,27 +69,25 @@
 }
 
 
-/* trying to reposition album images so they are arranged same as mockup provided but having problems during transitions.
+/* trying to reposition album images so they are arranged same as mockup provided but having problems during transitions. keeping these styles so I can revisit this. */
 
 /*.positionRight {
 	position: relative;
 	right: 165px;
 }*/
 
-.positionLeft {
+/*.positionLeft {
 	position: relative;
 	left: 245px;
-}
+}*/
 
 /* songlist info */
-
 
 .songlist.container {
 	width: 50%;
 	margin-top: -200px;
 	margin-bottom: 150px;
 }
-
 
 /* the scroll on the songlist doesn't look like the mockup, working to find better solution. */
 
@@ -98,7 +96,6 @@
 	height: 200px;
 	overflow:scroll;
 	box-shadow: 0 0 5px rgba(0,0,0,0.5);
-
 }
 
 .list-group-item {
